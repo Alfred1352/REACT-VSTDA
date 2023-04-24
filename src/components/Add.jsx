@@ -46,8 +46,7 @@ class Add extends React.Component{
         </div>
         <div className="panel-footer" style={{ width: "100%" }}>
           <button
-            className="btn-gradient green block create-todo move-btn"
-            onClick={() => onSubmit(this.selectedDate)}
+            className="btn-gradient green block create-todo move-btn"        
           >
             &nbsp;Add
           </button>

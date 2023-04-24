@@ -45,7 +45,7 @@ class App extends Component {
       editEnabled: false,
       editId: '',
       completed: false,
-      timestamp: ''
+      timestamp: this.state.timestamp.toLocaleString()
     };
 
     const sortedTodos = [...this.state.todos, newTodo].sort((a, b) => {
@@ -92,6 +92,7 @@ class App extends Component {
     editText:todo.text, 
     editId: todo.id,
     priority: todo.priority,
+    timestamp: ''
   });
   }
 
@@ -140,8 +141,7 @@ class App extends Component {
                 onDelete={this.handleDelete}
                 id={this.state.id}
                 onSave={this.handleSave}
-                onEditChange={this.handleEditChange}
-                timestamp={this.state.timestamp}
+                onEditChange={this.handleEditChange}              
               />
             }
           </div>

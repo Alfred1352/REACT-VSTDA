@@ -18,11 +18,7 @@ const View = props => (
             <input 
                 className="form-check-input" 
                 type="checkbox" 
-                onChange={() => props.onDone(todo)} /> {' '} {todo.text} {props.timestamp && (
-                    <span style={{ marginLeft: '10px'}}>
-                        ({props.timestamp.toLocalString()})
-                    </span>
-                )}
+                onChange={() => props.onDone(todo)} /> {' '} {todo.text} {" "} {todo.timestamp}
             <a className="delete-todo glyphicon glyphicon-trash pull-right" onClick={() => props.onDelete(todo)}
             href="#"></a>
             <a className="edit-todo glyphicon glyphicon-edit pull-right" onClick={() => props.onEdit(todo)} href="#"></a>
@@ -30,6 +26,6 @@ const View = props => (
             })}
         </ul>
     </div>
-)
+);
 
 export default View;

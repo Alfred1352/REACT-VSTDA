@@ -3,7 +3,6 @@ import Add from './components/Add';
 import View from './components/View';
 import Edit from './components/Edit';
 
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +14,8 @@ class App extends Component {
       priority: '',
       editEnabled: false,
       todos: [],
-      timestamp: ''
+      timestamp: '',
+      filter: 'All'
     };
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,6 +26,7 @@ class App extends Component {
     this.handleSave=this.handleSave.bind(this);
     this.handleEditChange=this.handleEditChange.bind(this);
     this.handleDateTimeChange=this.handleDateTimeChange.bind(this);
+    this.handleFilterChange=this.handleFilterChange.bind(this)
   }
 
   handleTextChange(e)  {   
@@ -49,7 +50,9 @@ class App extends Component {
     };
 
     const sortedTodos = [...this.state.todos, newTodo].sort((a, b) => {
-      return a.priority - b.priority;
+      const dataA = a.timestamp;
+      const dataB = b.timestamp
+      return a.priority - b.priority || dataA - dataB;
     }).reverse();
 
     this.setState({
@@ -114,11 +117,21 @@ class App extends Component {
       this.setState({todos: [...this.state.todos]});
   }
 
+  onExit() {
+    this.setState({ editEnabled: false });
+  }
+
+  handleFilterChange(filterValue) {
+    this.setState({
+      filter: filterValue,
+    });
+  }
+
   render() {
     return(
       <div className="container">
-        <h1 className="text-bold-black">To Do App</h1>
-        <h5 className="text-bold-black">Track what you need to do!</h5>
+        <h1 className="text-bold-black">Plan It</h1>
+        <h5 className="text-bold-black">Do it!</h5>
         <hr className="table-light"/>
         <div className="row">
           <form onSubmit={(event) => this.handleSubmit(event)}>
@@ -155,8 +168,12 @@ class App extends Component {
                 onSave={this.handleSave}
                 onTextChange={this.handleEditChange} 
                 changePriority={this.handlePriorityChange}
+                onSubmit={this.handleSubmit}
+                onDateTimeChange={this.handleDateTimeChange}
                 onDone={this.handleCompletedTodo}
-              /> 
+                onExit={this.onExit.bind(this)}
+                onFilterChange={this.handleFilterChange}
+              />
             }
           </div>
         </div>

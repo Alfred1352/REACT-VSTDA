@@ -14,13 +14,15 @@ class Add extends React.Component{
   render(){
     const { value, onChange, changePriority, onSubmit } = this.props;
     return (
-      <div className="panel panel-default">
-        <div className="panel-heading">Add New Task</div>
+      <div className="panel panel-default border border-2 border secondary rounded-3 shadow-sm">
+        <div className="panel-heading bg-secondary text-white fw-bold">Add New Task</div>
         <div className="panel-body">
           <textarea
-            className="create-todo-text"
+            className="create-todo-text form-control border-0 border-bottom border-secondary py-3"
             value={value}
             onChange={onChange}
+            placeholder="Enter Task Description Here..."
+            style={{ resize: "none" }}
           />
           <div className="form-group">
             <label className="label-move">How much of a priority is this?:</label>

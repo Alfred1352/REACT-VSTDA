@@ -1,7 +1,7 @@
 import React from "react";
 
 const Edit = props => {
-  return(
+  return (
     <div>
       <div className="panel panel-default">
         <div className="panel-heading">Edit Todo Item</div>
@@ -20,8 +20,16 @@ const Edit = props => {
             <option value="2">Medium</option>
             <option value="3">High</option>
           </select>
+          <div className="form-group">
+            <label className="label-move">Select a date and time you want to complete your task:</label>
+            <input 
+              type="datetime-local"
+              onChange={this.handleDateChange}
+            />
+          </div>
         <button className="edit-btn btn blueish mini update-todo" onClick={() => props.onSave(event)}>Save</button>
         </div>
+        <button className="exit-btn btn blueish mini exit-todo" onClick={() => props.onExit()}>Exit</button>
         <ul className = "list-group">
 
           {props.todosArray.map(todo => {
@@ -41,6 +49,7 @@ const Edit = props => {
             </li>
           })}
         </ul>
+
       </div>
     </div>
   )  
